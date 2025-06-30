@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        body {
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            display: flex;
+            user-select: none;
+        }
+        button{
+            height: 60px;
+            width: 60px;
+            margin: 3px;
+            font-size: 20px;
+            border-radius: 30%;
+            border: none;
+        }
+        .button{
+            display: block;
+            justify-content: center;
+            padding: 14px;
+        
+        }
+        input {
+            margin: 20px;
+            width: 240px;
+            outline: none;
+            height: 70px;
+            
+            padding-right: 0px;
+            color: rgb(0, 0, 0);
+            font-size: 30px;
+            background-color:  transparent;
+            border: 5px solid rgb(76, 85, 91);
+            border-radius: 20px;
+            TEXT-ALIGN: right;
+            
+        }
+        input[type=text]{
+            background-color: rgb(255, 255, 255);
+            padding-right: 10px;
+                }
+
+        .cal-Body {
+            background-color: rgb(138, 189, 255);
+            width:fit-content;
+            height: fit-content;
+            border-radius: 10px;
+            display: inline-block;
+            justify-content: center;
+
+        }
+   </style>
+</head>
+<body>
+    <div class="cal-Body">
+        <Input type="text" id="num"></Input>
+        <div class="button">
+        <Button onclick="om(1)">1</Button>
+        <Button onclick="om(2)">2</Button>
+        <Button onclick="om(3)">3</Button>
+        <Button onclick="opt('*')">x</Button>
+        <br>
+        <Button onclick="om(4)">4</Button>
+        <Button onclick="om(5)">5</Button>
+        <Button onclick="om(6)">6</Button>
+        <Button onclick="opt('+')">+</Button>
+        <br>
+        <Button onclick="om(7)">7</Button>
+        <Button onclick="om(8)">8</Button>
+        <Button onclick="om(9)">9</Button>
+        <Button onclick="opt('-')">-</Button>
+        <br>
+        <Button onclick="ac()">AC</Button>
+        <Button onclick="om(0)">0</Button> 
+        <Button onclick="opt('.')"><b>.</b></Button> 
+        <Button onclick="opt('/')">÷</Button>
+        <br>
+        <Button onclick="del()">del</Button>
+        <Button onclick="per('%')">%</Button>
+        <Button onclick="om('00')">00</Button> 
+
+        <Button onclick="eq()">=</Button>
+            
+        </div>
+    </div>
+    <script>
+        b= document.getElementById("num");
+        count=0
+        function om(num){
+           p= b.value+=num
+           count =0
+        }
+        // chatgpt
+        document.addEventListener('keydown', (event) => {
+        const key = event.key;
+
+        if (/[0-9]/.test(key)) {
+            om(key);
+        } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+            opt(key);
+        } else if (key === '.') {
+            om('.');
+        } else if (key === 'Enter') {
+            eq();
+        } else if (key === 'Backspace') {
+            del();
+        } else if (key === 'Escape') {
+            ac();
+        } else if (key === '%') {
+            per();
+        }
+    });
+        // chatgptend
+
+        function opt(opt){
+            if(count==0){
+            p =b.value+=opt
+            count++
+        }}
+        function eq(){
+            b.value=parseFloat(eval(p));
+            console.log(b.value=eval(p));
+        }
+        function ac(){
+            b.value=''
+        }
+        function del(){
+            b.value=b.value.slice(0,-1)
+        }
+        function per() {
+    if (b.value !== "") {
+        b.value = eval(b.value + "/100");
+    }
+}
+
+        
+        
+    </script>
+</body>
+</html>
